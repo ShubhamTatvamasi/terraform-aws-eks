@@ -18,6 +18,11 @@ variable "worker_nodes_min_size" {
   default = 1
 }
 
+variable "disk_size" {
+  type    = number
+  default = 50
+}
+
 variable "worker_nodes_max_size" {
   type    = number
   default = 10
