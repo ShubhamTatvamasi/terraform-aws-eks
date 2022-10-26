@@ -8,13 +8,16 @@ resource "helm_release" "efs_csi_driver" {
   values = [<<VALUES
   controller:
     serviceAccount:
+      create: true
       name: "aws-efs-csi-driver"
       annotations:
         eks.amazonaws.com/role-arn: ${aws_iam_role.efs_csi_driver.arn}
   node:
     serviceAccount:
-      name: "aws-efs-csi-driver"
       create: false
+      name: "aws-efs-csi-driver"
+      annotations:
+        eks.amazonaws.com/role-arn: ${aws_iam_role.efs_csi_driver.arn}
   storageClasses:
     - name: efs-sc
       parameters:
