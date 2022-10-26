@@ -1,4 +1,4 @@
-module "eks_managed_node_group" {
+module "eks_cluster" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 18.0"
 
