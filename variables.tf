@@ -13,9 +13,19 @@ variable "instance_types" {
   default = ["t3a.large"]
 }
 
-variable "disk_size" {
+variable "volume_size" {
   type    = number
   default = 50
+}
+
+variable "volume_type" {
+  type    = string
+  default = "gp3"
+}
+
+variable "device_name" {
+  type    = string
+  default = "/dev/xvda"
 }
 
 variable "worker_nodes_min_size" {

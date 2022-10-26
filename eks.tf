@@ -20,8 +20,15 @@ module "eks_managed_node_group" {
 
       instance_types = var.instance_types
       capacity_type  = var.capacity_type
-
-      disk_size = var.disk_size
+      block_device_mappings = {
+        xvda = {
+          device_name = var.device_name
+          ebs = {
+            volume_size = var.volume_size
+            volume_type = var.volume_type
+          }
+        }
+      }
     }
   }
 }
