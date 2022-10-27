@@ -1,4 +1,5 @@
 resource "helm_release" "aws_efs_csi_driver" {
+  depends_on       = [null_resource.kubeconfig]
   name             = "aws-efs-csi-driver"
   chart            = "aws-efs-csi-driver"
   repository       = "https://kubernetes-sigs.github.io/aws-efs-csi-driver"
