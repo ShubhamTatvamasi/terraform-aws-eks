@@ -1,9 +1,10 @@
 resource "helm_release" "aws_efs_csi_driver" {
-  name       = "aws-efs-csi-driver"
-  repository = "https://kubernetes-sigs.github.io/aws-efs-csi-driver"
-  chart      = "aws-efs-csi-driver"
-  version    = "2.2.9"
-  namespace  = var.efs_namespace
+  name             = "aws-efs-csi-driver"
+  chart            = "aws-efs-csi-driver"
+  repository       = "https://kubernetes-sigs.github.io/aws-efs-csi-driver"
+  version          = "2.2.9"
+  namespace        = var.efs_namespace
+  create_namespace = true
 
   values = [<<VALUES
   controller:

@@ -60,5 +60,5 @@ variable "efs_service_account" {
 
 variable "efs_namespace" {
   type    = string
-  default = "kube-system"
+  default = "aws-efs-csi-driver"
 }
