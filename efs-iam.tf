@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "efs_csi_driver_assume" {
       variable = "${replace(module.eks_cluster.cluster_oidc_issuer_url, "https://", "")}:sub"
 
       values = [
-        "system:serviceaccount:kube-system:aws-efs-csi-driver",
+        "system:serviceaccount:${var.efs_namespace}:${var.efs_service_account}",
       ]
     }
 

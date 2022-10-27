@@ -52,3 +52,13 @@ variable "region" {
   type    = string
   default = "ap-south-1"
 }
+
+variable "efs_service_account" {
+  type    = string
+  default = "aws-efs-csi-driver"
+}
+
+variable "efs_namespace" {
+  type    = string
+  default = "kube-system"
+}
