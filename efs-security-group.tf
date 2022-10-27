@@ -11,7 +11,6 @@ resource "aws_security_group" "efs" {
   }
 }
 
-
 resource "aws_security_group_rule" "efs" {
   description              = "Allow outbound EFS traffic"
   type                     = "egress"
