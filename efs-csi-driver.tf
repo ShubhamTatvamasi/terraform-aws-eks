@@ -24,11 +24,6 @@ resource "helm_release" "aws_efs_csi_driver" {
         provisioningMode: efs-ap
         fileSystemId: ${aws_efs_file_system.eks_pv.id}
         directoryPerms: "700"
-        gidRangeStart: "1000"
-        gidRangeEnd: "2000"
-        basePath: "/dynamic_provisioning"
-      reclaimPolicy: Delete
-      volumeBindingMode: Immediate
   VALUES
   ]
 }
