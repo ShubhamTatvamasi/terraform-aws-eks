@@ -1,6 +1,6 @@
 resource "aws_efs_file_system" "eks" {
   tags = {
-    Name = "MyEFS"
+    Name = "${var.cluster_name} EFS"
   }
 }
 
