@@ -4,3 +4,6 @@ resource "null_resource" "kubeconfig" {
     command = "aws eks update-kubeconfig --name ${var.cluster_name} --region ${var.region}"
   }
 }
+
+
+# kubectl config set-context --current

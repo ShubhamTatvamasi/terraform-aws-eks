@@ -1,3 +1,12 @@
+variable "region" {
+  type    = string
+  default = "ap-south-1"
+}
+
+##############################################################################
+# EKS
+##############################################################################
+
 variable "cluster_name" {
   type    = string
   default = "My-Cluster"
@@ -48,10 +57,9 @@ variable "capacity_type" {
   default = "ON_DEMAND"
 }
 
-variable "region" {
-  type    = string
-  default = "ap-south-1"
-}
+##############################################################################
+# EFS
+##############################################################################
 
 variable "efs_service_account" {
   type    = string
