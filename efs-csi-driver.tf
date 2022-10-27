@@ -1,5 +1,6 @@
 resource "helm_release" "aws_efs_csi_driver" {
-  depends_on       = [null_resource.kubeconfig]
+  count = var.deploy_efs ? 1 : 0
+
   name             = "aws-efs-csi-driver"
   chart            = "aws-efs-csi-driver"
   repository       = "https://kubernetes-sigs.github.io/aws-efs-csi-driver"
@@ -13,18 +14,18 @@ resource "helm_release" "aws_efs_csi_driver" {
       create: true
       name: ${var.efs_service_account}
       annotations:
-        eks.amazonaws.com/role-arn: ${aws_iam_role.efs_csi_driver.arn}
+        eks.amazonaws.com/role-arn: ${aws_iam_role.efs_csi_driver.0.arn}
   node:
     serviceAccount:
       create: false
       name: ${var.efs_service_account}
       annotations:
-        eks.amazonaws.com/role-arn: ${aws_iam_role.efs_csi_driver.arn}
+        eks.amazonaws.com/role-arn: ${aws_iam_role.efs_csi_driver.0.arn}
   storageClasses:
     - name: efs-sc
       parameters:
         provisioningMode: efs-ap
-        fileSystemId: ${aws_efs_file_system.eks.id}
+        fileSystemId: ${aws_efs_file_system.eks.0.id}
         directoryPerms: "700"
   VALUES
   ]

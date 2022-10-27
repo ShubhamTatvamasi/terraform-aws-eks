@@ -1,4 +1,5 @@
 data "aws_iam_policy_document" "efs_csi_driver" {
+  count = var.deploy_efs ? 1 : 0
 
   statement {
     actions = [
@@ -39,15 +40,18 @@ data "aws_iam_policy_document" "efs_csi_driver" {
 }
 
 resource "aws_iam_policy" "efs_csi_driver" {
+  count = var.deploy_efs ? 1 : 0
+
   name        = "${var.cluster_name}-efs-csi-driver"
   path        = "/"
   description = "Policy for the EFS CSI driver"
 
-  policy = data.aws_iam_policy_document.efs_csi_driver.json
+  policy = data.aws_iam_policy_document.efs_csi_driver.0.json
 }
 
 # Role
 data "aws_iam_policy_document" "efs_csi_driver_assume" {
+  count = var.deploy_efs ? 1 : 0
 
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
@@ -71,11 +75,15 @@ data "aws_iam_policy_document" "efs_csi_driver_assume" {
 }
 
 resource "aws_iam_role" "efs_csi_driver" {
+  count = var.deploy_efs ? 1 : 0
+
   name               = "${var.cluster_name}-efs-csi-driver"
-  assume_role_policy = data.aws_iam_policy_document.efs_csi_driver_assume.json
+  assume_role_policy = data.aws_iam_policy_document.efs_csi_driver_assume.0.json
 }
 
 resource "aws_iam_role_policy_attachment" "efs_csi_driver" {
-  role       = aws_iam_role.efs_csi_driver.name
-  policy_arn = aws_iam_policy.efs_csi_driver.arn
+  count = var.deploy_efs ? 1 : 0
+
+  role       = aws_iam_role.efs_csi_driver.0.name
+  policy_arn = aws_iam_policy.efs_csi_driver.0.arn
 }

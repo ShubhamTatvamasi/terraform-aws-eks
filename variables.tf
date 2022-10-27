@@ -61,6 +61,11 @@ variable "capacity_type" {
 # EFS
 ##############################################################################
 
+variable "deploy_efs" {
+  type    = bool
+  default = true
+}
+
 variable "efs_service_account" {
   type    = string
   default = "aws-efs-csi-driver"
