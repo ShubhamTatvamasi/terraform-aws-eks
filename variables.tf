@@ -1,6 +1,5 @@
 variable "region" {
   type    = string
-  default = "ap-south-1"
 }
 
 ##############################################################################
@@ -55,23 +54,4 @@ variable "worker_nodes_desired_size" {
 variable "capacity_type" {
   type    = string
   default = "ON_DEMAND"
-}
-
-##############################################################################
-# EFS
-##############################################################################
-
-variable "deploy_efs" {
-  type    = bool
-  default = true
-}
-
-variable "efs_service_account" {
-  type    = string
-  default = "aws-efs-csi-driver"
-}
-
-variable "efs_namespace" {
-  type    = string
-  default = "aws-efs-csi-driver"
 }
