@@ -23,7 +23,7 @@ resource "helm_release" "aws_efs_csi_driver" {
     - name: efs-sc
       parameters:
         provisioningMode: efs-ap
-        fileSystemId: ${aws_efs_file_system.eks_pv.id}
+        fileSystemId: ${aws_efs_file_system.eks.id}
         directoryPerms: "700"
   VALUES
   ]
